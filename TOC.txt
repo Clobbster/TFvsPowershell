@@ -1,0 +1,12 @@
+1. Intro to DevOps
+2. Windows
+3. Linux
+4. Git
+5. Infrastructure as Code
+	a. Powershell
+	b. Terraform
+6. Config Management
+7. DevOps Pipelines
+8.
+9.
+10
