@@ -134,6 +134,28 @@ resource "azurerm_network_interface" "TC2Nic" {
   }
 }
 
+# TC3 Nic 
+resource "azurerm_public_ip" "TC3pip" {
+  name                = "TC3pip"
+  location            = "${azurerm_resource_group.RG-DDoA.location}"
+  resource_group_name = "${azurerm_resource_group.RG-DDoA.name}"
+  allocation_method   = "Static"
+}
+
+resource "azurerm_network_interface" "TC3Nic" {
+  name                = "TC3Nic"
+  location            = "${azurerm_resource_group.RG-DDoA.location}"
+  resource_group_name = "${azurerm_resource_group.RG-DDoA.name}"
+
+  ip_configuration {
+    name                                    = "tc-ip-config"
+    subnet_id                               = "${data.azurerm_subnet.default.id}"
+    public_ip_address_id                    = "${azurerm_public_ip.TC2pip.id}"
+    private_ip_address_allocation           = "Dynamic"
+    load_balancer_backend_address_pools_ids = ["${azurerm_lb_backend_address_pool.TCLBbep.id}"]
+  }
+}
+
 #############################################
 # VMs
 #############################################
