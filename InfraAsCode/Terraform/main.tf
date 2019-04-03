@@ -156,6 +156,8 @@ resource "azurerm_network_interface" "TC3Nic" {
   }
 }
 
+# Comment change code merge issues
+
 #############################################
 # VMs
 #############################################
